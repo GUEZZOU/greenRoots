@@ -1,0 +1,27 @@
+{
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            //"path": ["C:\\Program Files\\Git\\cmd"],
+            "path": ["C:\\Program Files\\Git\\bin\\bash.exe"],
+            "args": [],
+            "terminal.integrated.defaultProfile.windows": "Git Bash"
+        },
+        "Node.js": {
+            "path": "C:\\Program Files\\nodejs\\node.exe",
+            "args": [],
+            //"icon": "terminal-default"
+        }
+    }
+}
