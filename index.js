@@ -3,8 +3,10 @@ import cors from 'cors';// on récupère la fonction cors du package cors
 import bodyParser from "body-parser";// on récupère la fonction bodyParser du package body-parser
 import router from './src/routers/indexRoutes.js';// on récupère le router défini dans le fichier indexRoutes.js
 import sequelize from './src/configs/sequelize.js';// on récupère l'instance de sequelize définie dans le fichier sequelize.js
-
+import { User} from './src/configs/relations.js';
 import dotenv from 'dotenv';// on utilise dotenv pour les variables d'environnement
+import { DataTypes } from 'sequelize';// on récupère la fonction DataTypes du package sequelize
+import bcrypt from 'bcrypt';// on récupère la fonction bcrypt du package bcrypt
 
 dotenv.config();//récupère les variables d'environnement
 

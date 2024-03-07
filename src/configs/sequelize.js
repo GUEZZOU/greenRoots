@@ -3,6 +3,8 @@ import dotenv from 'dotenv';//
 
 dotenv.config();
 
+
+
 //connexion à la base de données
 const sequelize = new Sequelize({// on crée une nouvelle instance de sequelize en passant les paramètres à cette fonctionconst
     dialect: "postgres",// on définit le dialecte de la base de données (ici PostgreSQL)
@@ -11,7 +13,16 @@ const sequelize = new Sequelize({// on crée une nouvelle instance de sequelize 
     password: process.env.DB_PASSWORD,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    logging: false// on désactive les logs de la base de données pour ne pas polluer la console
+    logging: false,// on désactive les logs de la base de données pour ne pas polluer la console
 });
+
+(async () => {
+    try {
+      await sequelize.authenticate();
+      console.log('Connexion à la base de données établie avec succès.');
+    } catch (error) {
+      console.error('Erreur lors de la connexion à la base de données :', error);
+    }
+  })();
 
 export default sequelize;
