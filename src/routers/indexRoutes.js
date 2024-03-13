@@ -1,11 +1,19 @@
 import express from 'express';
-
+import userRouter from './userRouter.js';
+import authRouter from './authRouter.js';
+//import adminRouter from './adminRouter.js';
+//import campaignRouter from './campaignRouter.js';
+//import treeRouter from './treeRouter.js';
 
 const router = express.Router();
-import user_router from './user.js';
 
-router.get('/', (req, res) => res.send('Hello World!')) // crée une route qui renvoie "Hello World!" en réponse à une requête GET sur la racine du serveur
+router.get('/', (req, res) => {
+  res.send('Welcome to GreenRoots API');
+});
 
-router.use('/users', user_router);
-
+router.use('/users', userRouter);
+router.use('/auth', authRouter);
+//router.use('/admin', adminRouter);
+//router.use('/campaign', campaignRouter);
+//router.use('/trees', treeRouter);
 export default router;

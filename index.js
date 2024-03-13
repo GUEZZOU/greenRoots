@@ -26,6 +26,12 @@ app.use(bodyParser.urlencoded({ extended: true }));// on utilise le middleware b
 
 app.use(router);
 
+//******Génère une clé secrète aléatoire de 256 bits (32 octets)
+// import crypto from 'crypto';
+// const secretKey = crypto.randomBytes(32).toString('hex');
+// console.log('Clé secrète JWT générée :', secretKey);
+//******************** */
+
 // start serveur et test la connecte à la base de données
 const port = process.env.PORT || 3001;// on définit le port sur lequel le serveur va écouter
 
