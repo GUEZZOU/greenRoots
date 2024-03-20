@@ -5,34 +5,33 @@
    
 
          //* créer un nouvel utilisateur
-         export const addUser = async (req, res) => {
-            try {
-                const { email, password, firstname, lastname, role } = req.body; 
-                if (!email || !password || !firstname || !lastname || !role) {
-                    return res.status(400).json({ message: 'Un ou plusieurs champs obligatoires sont manquants' });
-                }
-        
-                const existingUser = await User.findOne({ where: { email: email } }); // Recherche si l'utilisateur existe déjà
-                if (existingUser) {
+         export const  addUser = (req, res) => {
+            const { lastname, firstname, email, password, role } = req.body
+    
+            if (!lastname || !firstname || !email || !password || !role) {
+                return res.status(400).json({ message: 'Un ou plusieurs champs obligatoires sont manquants' });
+            }
+    
+            User.findOne({ where: { email: email }, raw: true })
+            .then(user => {
+                if (user) {
                     return res.status(409).json({ message: 'Cet email est déjà utilisé' });
                 }
-        
-                const hash = await bcrypt.hash(password, 10); 
-        
-                const newUser = await User.create({
-                    email: email,
-                    password: hash,
-                    firstname: firstname,
-                    lastname: lastname,
-                    role: role
-                }); 
-        
-                res.status(201).json({ message: 'Utilisateur créé', data: newUser }); // Envoie les données de l'utilisateur en JSON avec le statut 201 pour "Created"
-            } catch (error) {
-                console.error("Erreur lors de la création de l'utilisateur :", error);
-                res.status(500).json({ message: "Erreur lors de la création de l'utilisateur", error }); // En cas d'erreur, renvoie une erreur en JSON avec le statut 500 pour "Internal Server Error"
-            }
-        }
+
+                bcrypt.hash(password, 10)
+                    .then(hash => {
+                        req.body.password = hash;
+
+                        User.create(req.body)
+                            .then((user) => res.json({ message: 'Utilisateur créé', data: user }))
+                            .catch(error => res.status(500).json({ message: 'erreur bdd', error }));
+
+                    })
+                    .catch(error => res.status(500).json({ message: 'erreur bdd', error }));
+
+            })
+    }
+            
         //* récupérer tous les utilisateurs
 
         export const getAllUsers = async (req, res) => {

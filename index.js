@@ -17,7 +17,13 @@ const app = express(); // on execute la fonction express
 /* En utilisant ce middleware, pour permette au backend de répondre aux requêtes provenant
  d'un domaine différent, ce qui est essentiel pour la communication entre le frontend et le backend 
  lorsque ceux-ci sont hébergés sur des serveur différents.*/
-app.use(cors());
+app.use(cors(
+    {
+        origin: process.env.CORS_ORIGIN, //l'URL autorisée à accéder à l'API
+        methods: ['GET', 'POST'], //les méthodes autorisées pour les requêtes HTTP (GET, POST)
+        allowedHeaders: ['Content-Type'], //les headers autorisés dans la requête
+    }
+));
 
 app.use(express.json()); // Pour parser les requêtes en JSON
 

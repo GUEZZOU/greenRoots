@@ -16,13 +16,14 @@ const sequelize = new Sequelize({// on crée une nouvelle instance de sequelize 
     logging: false,// on désactive les logs de la base de données pour ne pas polluer la console
 });
 
-(async () => {
-    try {
-      await sequelize.authenticate();
-      console.log('Connexion à la base de données établie avec succès.');
-    } catch (error) {
-      console.error('Erreur lors de la connexion à la base de données :', error);
-    }
-  })();
+//test de la connexion à la base de données
+// (async () => {
+//     try {
+//       await sequelize.authenticate();
+//       console.log('Connexion à la base de données établie avec succès.');
+//     } catch (error) {
+//       console.error('Erreur lors de la connexion à la base de données :', error);
+//     }
+//   })();
 
 export default sequelize;

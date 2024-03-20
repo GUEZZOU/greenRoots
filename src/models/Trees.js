@@ -16,7 +16,7 @@ const Tree = sequelize.define('Tree', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  kind: {
+  kind: {// type d'arbre
     type: DataTypes.STRING,
     allowNull: true
   },

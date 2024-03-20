@@ -19,23 +19,27 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING(50),
         allowNull: false,
     },
+    // password: {
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     set(value) {
+    //         // on crypte le mot de passe avant de l'enregistrer dans la base de données
+    //         const salt = bcrypt.genSaltSync(10);// on génère un sel pour le cryptage //salt==> (est une chaîne de caractères aléatoire utilisée pour augmenter la sécurité d'un hash de mot de passe. Le sel est ajouté au mot de passe avant de le hacher, ce qui permet d'éviter les attaques par table arc-en-ciel et de générer des hash uniques même pour des mots de passe identiques.)
+    //         const hash = bcrypt.hashSync(value, salt);// on crypte le mot de passe
+    //         this.setDataValue('password', hash);// on enregistre le mot de passe crypté dans la colonne password
+    //     },
+    //     validate: {
+    //         // len: [8, 50], // Longueur entre 8 et 50 caractères
+    //         is: {
+    //             args: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, // Au moins une minuscule, une majuscule, un chiffre
+    //             msg: "Le mot de passe doit contenir au moins une minuscule, une majuscule, et un chiffre"
+    //         },
+
+    //     }
+    // },
     password: {
         type: DataTypes.STRING,
-        allowNull: false,
-        set(value) {
-            // on crypte le mot de passe avant de l'enregistrer dans la base de données
-            const salt = bcrypt.genSaltSync(10);// on génère un sel pour le cryptage //salt==> (est une chaîne de caractères aléatoire utilisée pour augmenter la sécurité d'un hash de mot de passe. Le sel est ajouté au mot de passe avant de le hacher, ce qui permet d'éviter les attaques par table arc-en-ciel et de générer des hash uniques même pour des mots de passe identiques.) ?
-            const hash = bcrypt.hashSync(value, salt);// on crypte le mot de passe
-            this.setDataValue('password', hash);// on enregistre le mot de passe crypté dans la colonne password
-        },
-        validate: {
-            // len: [8, 50], // Longueur entre 8 et 50 caractères
-            is: {
-                args: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, // Au moins une minuscule, une majuscule, un chiffre
-                msg: "Le mot de passe doit contenir au moins une minuscule, une majuscule, et un chiffre"
-            },
-
-        }
+        allowNull: false
     },
     email: {
         type: DataTypes.STRING,
